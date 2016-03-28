@@ -1,0 +1,114 @@
+<ion-view view-title="Input">
+  <ion-content class="padding">
+
+    
+
+
+    <h3><b>Basic Information</b></h3>
+
+
+<div id = "Main">
+    <form>
+
+
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Loan Amount:</span>
+          <input type="text"  NAME=principal placeholder="amount">
+        </label>
+
+
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Rate (APR):</span>
+          <input type="text" class="rate" placeholder="rate" NAME=apr>
+        </label>
+
+
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Term (<small>Years</small>) :</span>
+          <input type="text" class="term" placeholder="term" NAME=years>
+          </label>
+
+
+      <h3><b>Payment Frequency</b></h3>
+
+      <div class= "text-center" ng-controller="InputCtrl">
+         <button class="button button-positive" id = "wk">Wk</button>
+         <button class="button button-positive" id = "bi-wk">Bi-Wk</button>
+         <button class="button button-positive" id = "mo">Mo</button>
+         <button class="button button-positive" id = "qtr">Qtr</button>
+         <button class="button button-positive" id = "yr">Yr</button>
+        </div>
+
+
+      <h3><b>Extra Payments</b></h3>
+
+    <div class="additional_inputs">
+
+        <label for="extra_payments">Add
+          <input id="extra_payments"> Extra to Payments
+        </label>
+
+    <div class="margins"></div>
+
+
+
+        <label for="at_payment">Add
+          <input id="at_payment">
+        </label>
+
+        <label for="payment_nubmer">At payment #
+          <input id="payment_nubmer" placeholder="#">
+        </label>
+
+    <h3><b>Additional Options</b></h3>
+
+        <label for="annual_tax">Annual Property Tax
+          <input id="annual_tax">
+        </label>
+
+      <div class="margins"></div>
+
+        <label for="annual_isurance">Annual Home Insurance
+          <input id="annual_isurance">
+        </label>
+
+      <div class="margins"></div>
+
+        <label for="pmi">PMI in %
+          <input id="pmi" placeholder="%">
+        </label>
+    </div>
+
+    <h3><b>Customization</b></h3>
+
+
+
+         <label for="name">
+              <h4>Mortgage Name</h4>
+            <input id="name">
+         </label>
+
+         <label for="notes">
+              <h4>Notes</h4>
+             <textarea id="notes"></textarea>
+          </label>
+
+
+
+
+
+      <div class="button-bar">
+            <a class="button button-full button-positive" ng-controller="InputCtrl" ng-click="clear()">Clear</a>
+           <button class="button button-full button-positive"    onClick=compute(this.form) ng-controller="InputCtrl" ng-click="calc()">Calculate</button>
+            <a class="button button-full button-positive" href="#/tab/settings">Settings</a>
+        </div>
+
+        </form>
+</div>
+
+
+  </ion-content>
+</ion-view>
