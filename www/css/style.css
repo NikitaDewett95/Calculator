@@ -165,9 +165,8 @@ input{
   margin-top: 5%;
 }
 
-#chart{
-  overflow: auto;
-  width: 200%;
-  float: left;
+.grafik{
+  width:100%; /* ширина нашего блока */
+  background: #fff; /* цвет фона, белый */
+  overflow: auto; /* свойство для прокрутки по горизонтали. Автоматом, если больше блока */
 }
-
