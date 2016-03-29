@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 .controller('InputCtrl', function($scope,$state) {
   $scope.calc = function(){
     $state.go("tab.calculation");
-      
+
   };
 
     $scope.clicked = function() {
@@ -97,30 +97,33 @@ angular.module('starter.controllers', [])
 
 
 .controller('GraphCtrl', function($scope) {
-    
+
 
   $scope.drawGraph = function() {
 
-    var tempBalance= localStorage.getItem('payment');
-    tempBalance=tempBalance.split(',');
-    
-    
+    var payment= localStorage.getItem('payment');
+    payment = 'Payment'+payment;
+    payment=payment.split(',');
 
-    var tempTotalPayments=localStorage.getItem('interest');
-    tempTotalPayments=tempTotalPayments.split(',');
-    
 
-    var tempTotalInterest=localStorage.getItem('balance');
-    tempTotalInterest=tempTotalInterest.split(',');
-   
+
+    var interest=localStorage.getItem('interest');
+    interest = 'Interest'+interest;
+    interest=interest.split(',');
+
+
+    var balance=localStorage.getItem('balance');
+    balance='Balance'+balance;
+    balance=balance.split(',');
+
 
     chart = c3.generate({
       bindto: '#chart',
       data: {
         columns: [
-          tempTotalPayments,
-          tempTotalInterest,
-          tempBalance
+          payment,
+          interest,
+          balance
         ]
       }
     });

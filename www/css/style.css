@@ -165,5 +165,9 @@ input{
   margin-top: 5%;
 }
 
-
+#chart{
+  overflow: auto;
+  width: 200%;
+  float: left;
+}
 
