@@ -100,21 +100,47 @@ angular.module('starter.controllers', [])
 
 
   $scope.drawGraph = function() {
-
-    var payment= localStorage.getItem('payment');
-    payment = 'Payment'+payment;
-    payment=payment.split(',');
+    //document.getElementById('chart').style.width='300%';
 
 
+    //var payment= localStorage.getItem('payment');
+    //payment = 'Payment'+payment;
+    //payment=payment.split(',');
+    //console.log(payment.length);
+    //
+    //
+    //
+    //var interest=localStorage.getItem('interest');
+    //interest = 'Interest'+interest;
+    //interest=interest.split(',');
+    //
+    //
+    //var balance=localStorage.getItem('balance');
+    //balance='Balance'+balance;
+    //balance=balance.split(',');
+    var payment = getValue('payment', 'Payment');
+    var interest = getValue('interest', 'Interest');
+    var balance = getValue('balance', 'Balance');
+    var size = payment.length;
+    if(size>100&&size<200){
+      document.getElementById('chart').style.width='200%'
+    }
+    else if (size>200&&size<300){
+      document.getElementById('chart').style.width='300%'
+    }
+    else if (size>300&&size<400){
+      document.getElementById('chart').style.width='400%'
+    }
+    else if (size>400&&size<500){
+      document.getElementById('chart').style.width='500%'
+    }
 
-    var interest=localStorage.getItem('interest');
-    interest = 'Interest'+interest;
-    interest=interest.split(',');
-
-
-    var balance=localStorage.getItem('balance');
-    balance='Balance'+balance;
-    balance=balance.split(',');
+    function getValue(storageName, value){
+      var data=localStorage.getItem(storageName);
+      data=value+data;
+      data=data.split(',');
+      return data
+    }
 
 
     chart = c3.generate({
