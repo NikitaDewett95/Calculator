@@ -121,24 +121,18 @@ angular.module('starter.controllers', [])
     var payment = getValue('payment', 'Payment');
     var interest = getValue('interest', 'Interest');
     var balance = getValue('balance', 'Balance');
-    var size = payment.length;
-    if(size>100&&size<200){
-      document.getElementById('chart').style.width='200%'
-    }
-    else if (size>200&&size<300){
-      document.getElementById('chart').style.width='300%'
-    }
-    else if (size>300&&size<400){
-      document.getElementById('chart').style.width='400%'
-    }
-    else if (size>400&&size<500){
-      document.getElementById('chart').style.width='500%'
-    }
 
-    function getValue(storageName, value){
-      var data=localStorage.getItem(storageName);
-      data=value+data;
-      data=data.split(',');
+
+    function getValue(storageName, name){
+      var data=[name, NaN];
+      var tempData=localStorage.getItem(storageName);
+      tempData=tempData.split(',');
+      var numberOfMounth=tempData.length;
+      for (var m=1; m<=numberOfMounth; m+=12){
+        data.push(tempData[m])
+      }
+      data.pop();
+      data.push(tempData[numberOfMounth-1]);
       return data
     }
 
@@ -151,6 +145,14 @@ angular.module('starter.controllers', [])
           interest,
           balance
         ]
+      },
+      axis: {
+        x: {
+          min: 1
+        },
+        y: {
+          min: 0
+        }
       }
     });
   }

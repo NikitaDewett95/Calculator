@@ -12,7 +12,7 @@ function roundToPennies(n)
 
 function formatNumber (payment) {
         return payment.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-      
+
     }
 
 function Monthly(principal, years, apr)
@@ -23,7 +23,7 @@ function Monthly(principal, years, apr)
 }
 
 function MonthlyAmortization(principal, years, apr)
-{ 
+{
  payments = years * 12;
  monthlyInterest = apr / 12;
  monthlyPayment = Monthly(principal, years, apr);
@@ -33,31 +33,31 @@ $(".schedule").empty();
 var inter = [];
     var pay = [];
     var bal = [];
-    
+
  var table = "<table>";
 
  for(i = 1; i <= payments; i++)
  {
-     
+
 
    table += "<TR>";
    table += "<TD>" + i + "</TD>";
 
  interestPayment = principal * monthlyInterest;
    table += "<TD >" +localStorage.getItem("currency") + formatNumber(roundToPennies(interestPayment)) + "</TD>";
-     
+
 var interest = roundToPennies(interestPayment);
-     
+
  principalPayment = monthlyPayment - interestPayment;
    table += "<TD >" +localStorage.getItem("currency") + formatNumber(roundToPennies(principalPayment)) + "</TD>";
 
      var payment = roundToPennies(principalPayment);
-     
+
  principal -= principalPayment;
    table += "<TD >" +localStorage.getItem("currency") + formatNumber(roundToPennies(principal)) + "</TD>";
-     
+
 var balance = roundToPennies(principal);
-     
+
    table += "</TR>";
 //     '<span class = "curr">'+'$'+'</span>'
      inter[i] = interest;
@@ -67,8 +67,8 @@ var balance = roundToPennies(principal);
     localStorage.setItem("interest",inter);
     localStorage.setItem("balance",bal);
     localStorage.setItem("payment",pay);
-    
-    
+
+
 
   table += "</table>";
 
