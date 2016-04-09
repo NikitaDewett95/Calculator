@@ -76,7 +76,7 @@ var balance = roundToPennies(principal);
 
 }
 
-function compute(form)
+var compute = function (form)
 {
  if((form.principal.value.length != 0) &&
  (form.apr.value.length != 0) &&

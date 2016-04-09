@@ -32,7 +32,7 @@ $ionicConfigProvider.tabs.position('bottom');
    $ionicConfigProvider.navBar.alignTitle('center');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
+  // Set up the various states which the app can be in.GAV
   // Each state's controller can be found in controllers.js
   $stateProvider
 

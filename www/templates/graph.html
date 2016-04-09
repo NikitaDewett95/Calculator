@@ -1,42 +1,49 @@
 <ion-view view-title="Graph">  <ion-content>
-    <!--<div class="ct-chart ct-golden-section" id="graph" style="margin-top: 20%;"></div>-->
-    <div class="grafik">
-        <div id="chart"></div>
-    </div>
-       <button class="button button-full button-positive" ng-controller="GraphCtrl" ng-click="drawGraph()" onid = "graphButton">Draw Graph</button>
+    
+    <!--  draw chart in app-->
+      <div id="chart"></div> 
+    
+   <script type="text/javascript">
+      var payment = getValue('payment', 'Payment');
+    var interest = getValue('interest', 'Interest');
+    var balance = getValue('balance', 'Balance');
+
+
+    function getValue(storageName, name){
+      var data=[name];
+      var tempData=localStorage.getItem(storageName);
+      tempData=tempData.split(',');
+      var numberOfMounth=tempData.length;
+      for (var m=1; m<=numberOfMounth; m+=12){
+        data.push(tempData[m])
+      }
+      data.pop();
+      data.push(tempData[numberOfMounth-1]);
+      return data
+    }
+
+    chart = c3.generate({
+      bindto: '#chart',
+      data: {
+        columns: [
+          payment,
+          interest,
+          balance
+        ]
+      },
+      axis: {
+        x: {
+          min: 0
+        },
+        y: {
+          min: 0
+        }
+      }
+    });
+    
+    </script>
   </ion-content>
 </ion-view>
 
 
 
-<!--<script>-->
-  <!--var chart = c3.generate({-->
-    <!--bindto: '#chart',-->
-    <!--data: {-->
-      <!--columns: [-->
-        <!--[30, 200, 100, 400, 150, 250],-->
-      <!--]-->
-    <!--}-->
-  <!--});-->
-<!--</script>-->
-
-<!--<style>-->
-  <!--.ct-series-a .ct-line,-->
-  <!--.ct-series-a .ct-point {-->
-    <!--stroke: blue;-->
-  <!--}-->
-
-  <!--.ct-series-b .ct-line,-->
-  <!--.ct-series-b .ct-point {-->
-    <!--stroke: green;-->
-  <!--}-->
-<!--</style>-->
-
-<!--<script type="text/javascript" charset="utf-8">-->
-
-  <!--var graph =  new Chartist.Line('#graph', {-->
-    <!--labels: ["0","75", "150", "225", "300"],-->
-    <!--series: [[0,41000,164000,287000,410000]]-->
-  <!--});-->
-
-<!--</script>-->

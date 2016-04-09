@@ -3,6 +3,45 @@ angular.module('starter.controllers', [])
 
 .controller('InputCtrl', function($scope,$state) {
   $scope.calc = function(){
+      
+setTimeout(function(){window.yourCode();}, 150);
+      
+      var payment = getValue('payment', 'Payment');
+    var interest = getValue('interest', 'Interest');
+    var balance = getValue('balance', 'Balance');
+
+
+    function getValue(storageName, name){
+      var data=[name];
+      var tempData=localStorage.getItem(storageName);
+      tempData=tempData.split(',');
+      var numberOfMounth=tempData.length;
+      for (var m=1; m<=numberOfMounth; m+=12){
+        data.push(tempData[m])
+      }
+      data.pop();
+      data.push(tempData[numberOfMounth-1]);
+      return data
+    }
+
+    chart = c3.generate({
+      bindto: '#chart',
+      data: {
+        columns: [
+          payment,
+          interest,
+          balance
+        ]
+      },
+      axis: {
+        x: {
+          min: 0
+        },
+        y: {
+          min: 0
+        }
+      }
+    });
     $state.go("tab.calculation");
 
   };
@@ -10,7 +49,9 @@ angular.module('starter.controllers', [])
     $scope.clicked = function() {
       $('#GO_TO').click(function () {
         $('#GO_TO').hide();
+    
         $state.go("tab.input");
+            
       });
     };
 
@@ -100,31 +141,13 @@ angular.module('starter.controllers', [])
 
 
   $scope.drawGraph = function() {
-    //document.getElementById('chart').style.width='300%';
-
-
-    //var payment= localStorage.getItem('payment');
-    //payment = 'Payment'+payment;
-    //payment=payment.split(',');
-    //console.log(payment.length);
-    //
-    //
-    //
-    //var interest=localStorage.getItem('interest');
-    //interest = 'Interest'+interest;
-    //interest=interest.split(',');
-    //
-    //
-    //var balance=localStorage.getItem('balance');
-    //balance='Balance'+balance;
-    //balance=balance.split(',');
     var payment = getValue('payment', 'Payment');
     var interest = getValue('interest', 'Interest');
     var balance = getValue('balance', 'Balance');
 
 
     function getValue(storageName, name){
-      var data=[name, NaN];
+      var data=[name];
       var tempData=localStorage.getItem(storageName);
       tempData=tempData.split(',');
       var numberOfMounth=tempData.length;
@@ -135,7 +158,6 @@ angular.module('starter.controllers', [])
       data.push(tempData[numberOfMounth-1]);
       return data
     }
-
 
     chart = c3.generate({
       bindto: '#chart',
@@ -148,7 +170,7 @@ angular.module('starter.controllers', [])
       },
       axis: {
         x: {
-          min: 1
+          min: 0
         },
         y: {
           min: 0
